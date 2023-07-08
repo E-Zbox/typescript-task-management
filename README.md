@@ -1,4 +1,4 @@
-# Typescript Todo List
+# Typescript Task Management
 
 ## Getting Started
 
