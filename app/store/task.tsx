@@ -32,19 +32,19 @@ export class TaskStore {
         makeAutoObservable(this);
         this.state = [
             {
-                _id: this.taskIdGenerator(),
+                _id: 1,
                 description: "Finish that EDx AWS course ASAP! Let's start spinning up resources on the cloud!",
                 status: ITaskStatus.inProgress,
                 title: "Learn AWS"
             },
             {
-                _id: this.taskIdGenerator(),
+                _id: 2,
                 description: "Rehearse on the drums for at least 2 hours",
                 status: ITaskStatus.inProgress,
                 title: "Drums"
             },
             {
-                _id: this.taskIdGenerator(),
+                _id: 3,
                 description: "Go through the week's content and handle the task that team members have assigned you. Remember, Milestone #9 is due Monday",
                 status: ITaskStatus.toDo,
                 title: "ALX Foundations | Week 9"
