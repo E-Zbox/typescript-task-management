@@ -21,11 +21,10 @@ export class FormStore {
 
     constructor() {
         makeAutoObservable(this);
+        this.updateForm = this.updateForm.bind(this)
     }
 
     updateForm(updateObject: IUpdateForm) {
-        const self = this;
-        console.log(updateObject, this, self)
-        this.state = {...self.state, ...updateObject}
+        this.state = {...this.state, ...updateObject}
     }
 }
