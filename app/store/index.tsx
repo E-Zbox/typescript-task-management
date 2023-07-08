@@ -1,26 +1,7 @@
-import {makeAutoObservable } from "mobx";
+// this is the one point of every store initialization
+import { FormStore } from "./form";
+import { TaskStore } from "./task";
 
+export const formStore = new FormStore()
 
-class MyStore {
-    count  = 0;
-
-    constructor() {
-        makeAutoObservable(this);
-    }
-
-    decrementCount() {
-        this.count--;
-    }
-
-    incrementCount() {
-        this.count++;
-    }
-
-    reset() {
-        this.count = 0;
-    }
-}
-
-const myStore = new MyStore();
-
-export default myStore;
+export const taskStore = new TaskStore();
