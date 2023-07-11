@@ -1,7 +1,13 @@
 // this is the one point of every store initialization
-import { FormStore } from "./form";
-import { TaskStore } from "./task";
+import * as form from "./form";
+import * as task from "./task";
 
-export const formStore = new FormStore()
+const FormStore = new form.FormStore()
 
-export const taskStore = new TaskStore();
+const TaskStore = new task.TaskStore();
+
+const _ = {
+    task, form, FormStore, TaskStore, 
+}
+
+export default _
