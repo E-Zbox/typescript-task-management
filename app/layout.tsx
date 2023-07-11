@@ -1,7 +1,5 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import {inter, racing_sans_one, roboto_mono} from "./styles/fonts"
 
 export const metadata = {
   title: 'Stamurai | Task Management',
@@ -14,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${inter.variable} ${racing_sans_one.variable} ${roboto_mono.variable}`}>
+      <body>{children}</body>
     </html>
   )
 }
