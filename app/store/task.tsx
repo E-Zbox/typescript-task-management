@@ -1,6 +1,6 @@
 import {makeAutoObservable } from "mobx";
 
-enum ITaskStatus {
+export enum ITaskStatus {
     toDo = "To Do",
     inProgress = "In Progress",
     completed = "Completed"
@@ -50,6 +50,11 @@ export class TaskStore {
                 title: "ALX Foundations | Week 9"
             },
         ]
+        this.taskIdGenerator = this.taskIdGenerator.bind(this)
+        this.createTask = this.createTask.bind(this)
+        this.deleteTask = this.deleteTask.bind(this)
+        this.getTask = this.getTask.bind(this)
+        this.updateTask = this.updateTask.bind(this)
     }
 
     taskIdGenerator(): number {
