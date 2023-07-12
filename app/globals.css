@@ -25,3 +25,33 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.modal_x_button {
+  position: relative;
+  color: white;
+  background-color: transparent;
+}
+
+.modal_x_button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 15;
+}
+
+.modal_x_button path {
+  z-index: 10;
+}
+
+.modal_x_button:hover {
+  color: red;
+  background-color: transparent;
+}
+
+.modal_x_button:hover .modal_x_button::before {
+  background-color: white;
+}
