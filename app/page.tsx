@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Link from "next/link";
 import { observer } from "mobx-react-lite";
 import React from "react";
 // components
@@ -9,6 +9,7 @@ import { Task } from "./components/Task";
 // store
 import store from "./store";
 // styles
+import { MainApp } from "./styles/App";
 import { Button, Option, Select } from "./styles/shared/Form";
 import { H3 } from "./styles/shared/Text";
 
@@ -24,18 +25,32 @@ export default observer(function Home() {
         e.preventDefault();
         const {
             input_description: description,
-            input_status: status,
+            input_status,
             input_title: title,
         } = formState;
+
+        let status = ITaskStatus.toDo;
+        switch (input_status) {
+            case "To Do":
+                status = ITaskStatus.toDo;
+            case "In Progress":
+                status = ITaskStatus.inProgress;
+            case "Completed":
+                status = ITaskStatus.completed;
+            default:
+                status = ITaskStatus.toDo;
+        }
+
         createTask({
             _id: taskIdGenerator(),
             description,
-            status: ITaskStatus.inProgress,
+            status,
             title,
         });
     };
+
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between">
+        <MainApp>
             <Navbar />
             {modalFormState.show && (
                 <Modal>
@@ -85,6 +100,9 @@ export default observer(function Home() {
                                 name="input_status"
                                 id="input_status"
                                 placeholder="Status"
+                                onChange={({ target: { name, value } }) =>
+                                    updateFormState({ [name]: value })
+                                }
                             >
                                 <Option value={ITaskStatus.completed}>
                                     {ITaskStatus.completed}
@@ -101,8 +119,12 @@ export default observer(function Home() {
                     </form>
                 </Modal>
             )}
-            <div className="w-9/12 flex h-fit flex-col items-start justify-between p-10">
-                <H3 className={""}>My Tasks</H3>
+            <div
+                className={`w-9/12 flex h-fit flex-col ${
+                    taskState.length ? "items-start" : "items-center"
+                } justify-between p-10`}
+            >
+                <H3 className={""}>{taskState.length ? "My" : "No"} Tasks</H3>
                 {taskState.map(({ _id, title }) => (
                     // <div key={_id}>
                     //   <h5>{title}</h5>
@@ -110,6 +132,6 @@ export default observer(function Home() {
                     <Task key={_id} _id={_id} title={title} />
                 ))}
             </div>
-        </main>
+        </MainApp>
     );
 });
